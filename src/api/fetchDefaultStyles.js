@@ -12,9 +12,9 @@ const api = axios.create({
   },
 });
 
-export const fetchDefaultStyles = async (originURL) => {
+export const fetchDefaultStyles = async (newOriginURL) => {
   try {
-    const response = await api.post("", { originURL });
+    const response = await api.post("", { originURL: newOriginURL });
     if (response.data) {
       var styleDataList = response.data;
 

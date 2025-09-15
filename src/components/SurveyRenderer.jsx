@@ -9,7 +9,7 @@ import { fetchFontStyles } from "../api/fetchFontStyles";
 
 const SurveyRenderer = ({
   schema,
-  originURL,
+  newOriginURL,
   surveySlogan,
   surveyInfo,
   surveyQuestionJSON,
@@ -28,7 +28,7 @@ const SurveyRenderer = ({
           `${import.meta.env.VITE_AZURE_BLOB_URL}/${surveySlogan}/index.js`
         );
         if (fnModule) {
-          await fetchDefaultStyles(originURL);
+          await fetchDefaultStyles(newOriginURL);
           await fetchFontStyles(surveySlogan);
           fnModule.setSurveyInfo(surveyInfo);
           fnModule.setSurvey(survey);
@@ -42,6 +42,7 @@ const SurveyRenderer = ({
         console.warn("Function module not found for:", surveySlogan);
       }
     };
+    
     importFnModule(surveySlogan);
   }, []);
 

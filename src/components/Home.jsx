@@ -16,7 +16,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   // const newOrigin =
-  //   "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/survey/lahiru-training-bc";
+  //   "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/survey/td-synnex-bc-test";
   const newOrigin = window.location.href;
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Home = () => {
 
     const getLicenseBlocks = async () => {
       try {
-        const surveyQuestions = await fetchLicenseBlocks(newOrigin);
+        const surveyQuestions = await fetchLicenseBlocks(newOrigin, slogan);
         if (surveyQuestions) {
           console.log(surveyQuestions);
           setSurveyQuestions(surveyQuestions);
@@ -82,7 +82,7 @@ const Home = () => {
       ) : surveyJson && originUrl && surveyInfo && surveyQuestions ? (
         <SurveyRenderer
           schema={surveyJson}
-          originURL={originUrl}
+          newOriginURL={newOrigin}
           surveySlogan={slogan}
           surveyInfo={surveyInfo}
           surveyQuestionJSON={surveyQuestions}
