@@ -6,6 +6,7 @@ import { Survey } from "survey-react-ui";
 import "survey-core/survey-core.css";
 import { fetchDefaultStyles } from "../api/fetchDefaultStyles";
 import { fetchFontStyles } from "../api/fetchFontStyles";
+import "survey-core/survey.i18n";
 
 const SurveyRenderer = ({
   schema,
@@ -42,7 +43,7 @@ const SurveyRenderer = ({
         console.warn("Function module not found for:", surveySlogan);
       }
     };
-    
+
     importFnModule(surveySlogan);
   }, []);
 
@@ -61,14 +62,18 @@ const SurveyRenderer = ({
   }
 
   if (loading) {
-    survey.beginLoading();
     survey.showTitle = false;
-    survey.logo = "";
+    survey.beginLoading();
+    // survey.logo = "";
   } else {
-    survey.endLoading();
     survey.showTitle = showTitle;
+    survey.endLoading();
   }
-  return !error ? <Survey model={survey} /> : <div className="error">{error}</div>;
+  return !error ? (
+    <Survey model={survey} />
+  ) : (
+    <div className="error">{error}</div>
+  );
 };
 
 export default SurveyRenderer;
