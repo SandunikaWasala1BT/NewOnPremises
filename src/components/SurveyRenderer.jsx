@@ -62,8 +62,8 @@ const SurveyRenderer = ({
   }
 
   if (loading) {
-    survey.showTitle = false;
     survey.beginLoading();
+    survey.showTitle = false;
     // survey.logo = "";
   } else {
     survey.showTitle = showTitle;
