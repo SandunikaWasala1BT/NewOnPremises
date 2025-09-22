@@ -7,7 +7,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/survey/:slogan" element={<Home />} />
+          <Route path="/:slogan" element={<Home />} />
           <Route path="/not-found" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

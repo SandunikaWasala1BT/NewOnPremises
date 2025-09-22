@@ -9,14 +9,13 @@ const Home = () => {
   const [surveyJson, setSurveyJson] = useState(null);
   const [surveyInfo, setSurveyInfo] = useState(null);
   const [surveyQuestions, setSurveyQuestions] = useState(null);
-  const [originUrl, setOriginUrl] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { slogan } = useParams();
   const navigate = useNavigate();
 
   // const newOrigin =
-  // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/survey/telefonica-tech-spain-bc";
+  //   "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/tdsynnex-bc";
   const newOrigin = window.location.href;
 
   useEffect(() => {
@@ -27,7 +26,6 @@ const Home = () => {
           const data = response.data;
           const schema = data?.content;
           setSurveyJson(schema);
-          setOriginUrl(data?.originUrl);
         } else if (response.status === 404) {
           return navigate("/not-found");
         }
@@ -36,7 +34,7 @@ const Home = () => {
         if (error.response && error.response.status === 404) {
           return navigate("/not-found");
         }
-        setError(error);
+        setError("Something went wrong, please try again later.");
       }
     };
 
@@ -51,7 +49,7 @@ const Home = () => {
         }
       } catch (error) {
         console.error(error);
-        setError(error);
+        setError("Something went wrong, please try again later.");
       }
     };
 
@@ -66,7 +64,7 @@ const Home = () => {
         }
       } catch (error) {
         console.error(error);
-        setError(error);
+        setError("Something went wrong, please try again later.");
       }
     };
 
@@ -79,7 +77,7 @@ const Home = () => {
     <>
       {loading ? (
         <p></p>
-      ) : surveyJson && originUrl && surveyInfo && surveyQuestions ? (
+      ) : surveyJson && surveyInfo && surveyQuestions ? (
         <SurveyRenderer
           schema={surveyJson}
           newOriginURL={newOrigin}
