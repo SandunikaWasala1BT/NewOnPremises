@@ -7,36 +7,7 @@
     <title>Vite + React</title>
     <!-- <script src="https://gyde365qualifysurveyimg.blob.core.windows.net/userfunctions/lahirutraining-bc/googleAnalytics.js"></script> -->
     <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-89PH50057J"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      // function gtag(){dataLayer.push(arguments);}
-      window.gtag = function () {
-        dataLayer.push(arguments);
-      };
-
-      gtag("js", new Date());
-
-      gtag("config", "G-89PH50057J");
-      // Listen for messages from the iframe
-      window.addEventListener("message", function (event) {
-        // Optional: Add security check for event.origin
-        if (event.data && event.data.type === "gtag") {
-          // Call gtag with the arguments from the iframe message
-          gtag("event", event.data.event, {
-            event_category: event.data.category,
-            event_label: event.data.label,
-            event_sessioniddata: event.data.sessionId,
-            event_surveyurl: event.data.surveyUrl,
-            event_timedate: event.data.timedata,
-            value: event.data.value,
-          });
-        }
-      });
-    </script>
+    
   </head>
   <body>
     <div id="root"></div>
