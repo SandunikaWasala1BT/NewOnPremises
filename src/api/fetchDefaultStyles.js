@@ -79,6 +79,7 @@ export const fetchDefaultStyles = async (newOriginURL) => {
         // link.href = "defaultV2.min.css";
         // document.getElementsByTagName("head")[0].appendChild(link);
       });
+      return;
     }
     console.warn("No default styles found");
   } catch (error) {
