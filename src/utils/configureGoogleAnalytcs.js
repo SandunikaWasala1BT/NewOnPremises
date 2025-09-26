@@ -35,3 +35,65 @@ export function configureGoogleAnalytics(propertyID) {
   script2.appendChild(document.createTextNode(scriptText));
   document.head.appendChild(script2);
 }
+
+export function googleAnalyticsOnPageChanged(
+  sender,
+  options,
+  sessionDetailsId
+) {
+  const pageName = sender.currentPage.name;
+  const pageNo = sender.currentPageNo;
+  const actualLastPageNumber = window.lastPageexpectedNo;
+  const nowUTC = new Date().toISOString();
+  //add consition to avoid recording pages between destination and the starting tab when navigation using navigation bar
+  if (
+    actualLastPageNumber == null ||
+    (actualLastPageNumber != null && pageNo == actualLastPageNumber)
+  ) {
+    window.parent.postMessage(
+      {
+        type: "gtag",
+        event: "page_navigation",
+        category: "Survey",
+        label: pageName,
+        value: options.oldCurrentPage
+          ? options.oldCurrentPage.visibleIndex + 1
+          : 1,
+        sessionId: sessionDetailsId, // Include sessionDetailsId here
+        surveyUrl: window.location.href,
+        timedata: nowUTC,
+      },
+      "*"
+    ); // Replace '*' with the specific origin if known, for security
+
+    window.lastPageexpectedNo = null;
+  }
+}
+
+export function generateGUID() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0;
+    const v = c === "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
+export function googleAnalyticsOnComplete(sender, options, sessionDetailsId) {
+  const nowUTC = new Date().toISOString();
+
+  const pageName = sender.currentPage.name;
+  window.parent.postMessage(
+    {
+      type: "gtag",
+      //event: 'survey_complete',
+      event: "survey_complete",
+      category: "Survey",
+      label: "Survey Completed - " + pageName,
+      value: 1,
+      sessionId: sessionDetailsId, // Include sessionDetailsId here
+      surveyUrl: window.location.href,
+      timedata: nowUTC,
+    },
+    "*"
+  ); // Replace '*' with the specific origin if known, for security
+}

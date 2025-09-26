@@ -7,6 +7,11 @@ import "survey-core/survey-core.css";
 import { fetchDefaultStyles } from "../api/fetchDefaultStyles";
 import { fetchFontStyles } from "../api/fetchFontStyles";
 import "survey-core/survey.i18n";
+import {
+  generateGUID,
+  googleAnalyticsOnComplete,
+  googleAnalyticsOnPageChanged,
+} from "../utils/configureGoogleAnalytcs";
 
 const SurveyRenderer = ({
   schema,
@@ -49,15 +54,20 @@ const SurveyRenderer = ({
 
   useEffect(() => {}, [fnModule]);
 
-  if (survey) {
-    survey.onCurrentPageChanged.add((sender, options) => {
-      console.log("Current page no:", options.newCurrentPage.num);
-    });
-  }
+  // if (survey) {
+  //   survey.onCurrentPageChanged.add((sender, options) => {
+  //     console.log("Current page no:", options.newCurrentPage.num);
+  //   });
+  // }
 
   if (fnModule) {
+    const sessionDetailsId = generateGUID();
+    survey.onCurrentPageChanged.add(async (sender, options) => {
+      googleAnalyticsOnPageChanged(sender, options, sessionDetailsId);
+    });
     survey.onComplete.add(async (sender, options) => {
       await fnModule.saveSurveyResults(sender, options);
+      googleAnalyticsOnComplete(sender, options, sessionDetailsId);
     });
   }
 
