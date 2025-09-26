@@ -27,7 +27,7 @@ const Home = () => {
           const data = response.data;
           const schema = data?.content;
           setSurveyJson(schema);
-          configureGoogleAnalytics("G-89PH50057J");
+          // configureGoogleAnalytics("G-89PH50057J");
         } else if (response.status === 404) {
           return navigate("/not-found");
         }
