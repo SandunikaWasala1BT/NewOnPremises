@@ -61,14 +61,23 @@ const SurveyRenderer = ({
   // }
 
   if (fnModule) {
+    console.log("Current page no I:", survey.currentPageNo);
+    console.log("Is first page:", survey.isFirstPage);
+    console.log("Is last page:", survey.isLastPage);
     const sessionDetailsId = generateGUID();
     survey.onCurrentPageChanged.add(async (sender, options) => {
       googleAnalyticsOnPageChanged(sender, options, sessionDetailsId);
+      // console.log("Current page no II:", options.newCurrentPage.num);
+      console.log("Current page no I:", survey.currentPageNo);
+      console.log("Is first page:", survey.isFirstPage);
+      console.log("Is last page:", survey.isLastPage);
     });
     survey.onComplete.add(async (sender, options) => {
       await fnModule.saveSurveyResults(sender, options);
       googleAnalyticsOnComplete(sender, options, sessionDetailsId);
     });
+    console.log("Page visible count:", survey.visiblePageCount);
+    console.log("Page count:", survey.pageCount);
   }
 
   if (loading) {
