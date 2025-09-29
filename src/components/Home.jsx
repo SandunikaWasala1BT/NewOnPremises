@@ -16,8 +16,8 @@ const Home = () => {
   const navigate = useNavigate();
 
   const newOrigin =
-  "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/lahirutraining-bc";
-  // const newOrigin = window.location.href;
+    // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/lahirutraining-bc";
+    window.location.href;
 
   useEffect(() => {
     const getSchema = async () => {
