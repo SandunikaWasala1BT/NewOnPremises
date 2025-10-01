@@ -73,6 +73,7 @@ const SurveyRenderer = ({
       console.log("Is last page:", survey.isLastPage);
     });
     survey.onComplete.add(async (sender, options) => {
+      fnModule.setSurvey(sender);
       await fnModule.saveSurveyResults(sender, options);
       googleAnalyticsOnComplete(sender, options, sessionDetailsId);
     });
