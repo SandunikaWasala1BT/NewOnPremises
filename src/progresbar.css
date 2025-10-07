@@ -1,0 +1,57 @@
+/* For experimental purposes */
+
+/* Progress button item text default color */
+.sd-progress-buttons__list li .sd-progress-buttons__button {
+    color: #000000;
+}
+
+/* Progress bar passed item text color */
+.sd-progress-buttons__list .sd-progress-buttons__list-element--passed .sd-progress-buttons__button {
+    color: #ffffff;
+}
+
+/* Progress bar item hover text color */
+.sd-progress-buttons__list li:hover .sd-progress-buttons__button {
+    color: #000000;
+}
+
+/* Progress bar item default color */
+.sd-progress-buttons__list li .sd-progress-buttons__button .sd-progress-buttons__button-content {
+    background-color: #00000073;
+}
+
+/* Progress bar item hover color */
+.sd-progress-buttons__list li:hover .sd-progress-buttons__button .sd-progress-buttons__button-content {
+    border-color: #19b394;
+}
+
+/* Progress bar passed item color */
+.sd-progress-buttons__list .sd-progress-buttons__list-element--passed .sd-progress-buttons__button .sd-progress-buttons__button-content {
+    background-color: #19b394;
+}
+
+/* Progress bar item current color */
+.sd-progress-buttons__list .sd-progress-buttons__list-element--current .sd-progress-buttons__button .sd-progress-buttons__button-content {
+    border-color: #19b394;
+}
+
+.sd-progress-buttons__list .sd-progress-buttons__list-element--current .sd-progress-buttons__button
+ {
+    /* border-color: #19b394; */
+    color: #000000;
+}
+
+/* Progress bar connector line */
+.sd-progress-buttons__list li:not(:first-child) > .sd-progress-buttons__connector {
+    background-color: #00000073;
+}
+
+/* Progress bar connector line (current) */
+.sd-progress-buttons__list .sd-progress-buttons__list-element--current:not(:first-child)>.sd-progress-buttons__connector {
+    background-color: #19b394;
+}
+
+/* Progress bar connector line (passed) */
+.sd-progress-buttons__list .sd-progress-buttons__list-element--passed:not(:first-child)>.sd-progress-buttons__connector {
+       background-color: #19b394;
+}

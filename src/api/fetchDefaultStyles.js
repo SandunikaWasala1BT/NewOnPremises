@@ -17,7 +17,7 @@ export const fetchDefaultStyles = async (newOriginURL) => {
     const response = await api.post("", { originURL: newOriginURL });
     if (response.data) {
       var styleDataList = response.data;
-
+      // document.documentElement.style.setProperty("--progress-bar-color", "red");
       // Create a new <style> element
       var styleElement = document.createElement("style");
       styleElement.setAttribute("type", "text/css");

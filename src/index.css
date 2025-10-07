@@ -1,3 +1,4 @@
+/* General styles for the survey application */
 body{
   margin: 0;
   padding: 0;
@@ -10,3 +11,15 @@ body{
   font-size: small;
   padding: 10px 0;
 }
+
+/* Yes/No button box shadow */
+.sd-boolean.sd-boolean--allowhover:focus-within {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.055) !important;
+}
+
+/* .sd-table-wrapper::before,.sd-table-wrapper::after {background:#ffffff00}
+.sd-table{background:#ffffff00}
+.sd-table__cell--empty{background-color:#ffffff00}
+.sd-table__cell--row-text{background-color:#ffffff00}
+.sd-table__cell--row-text{color:#ffffff}
+.sd-table__cell--header{color:#ffffff} */
