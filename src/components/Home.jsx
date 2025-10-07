@@ -16,7 +16,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const newOrigin =
-    // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/lahirutraining-bc";
+    // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/visuallabs-bc";
     window.location.href;
 
   useEffect(() => {
