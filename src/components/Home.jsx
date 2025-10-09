@@ -16,10 +16,18 @@ const Home = () => {
   const navigate = useNavigate();
 
   const newOrigin =
-    // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/visuallabs-bc";
-    window.location.href;
+    // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/tdsynnex-bc";
+  window.location.href;
 
   useEffect(() => {
+    const setDefaultStylesFile = () => {
+      // Append defaultV2.min.css file to the head after applying the styles
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = `${import.meta.env.VITE_AZURE_BLOB_URL}/${slogan}/defaultCss.css`;
+      document.getElementsByTagName("head")[0].appendChild(link);
+    };
     const getSchema = async () => {
       try {
         const response = await api.get("", { params: { slogan } });
@@ -28,6 +36,13 @@ const Home = () => {
           const schema = data?.content;
           setSurveyJson(schema);
           configureGoogleAnalytics("G-89PH50057J");
+          if (data.customCssBlobUrl ) {
+            var link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            link.href = data.customCssBlobUrl;
+            document.getElementsByTagName("head")[0].appendChild(link);
+          }
         } else if (response.status === 404) {
           return navigate("/not-found");
         }
@@ -70,6 +85,7 @@ const Home = () => {
       }
     };
 
+    setDefaultStylesFile();
     getSchema();
     getSurveyInfo();
     getLicenseBlocks();

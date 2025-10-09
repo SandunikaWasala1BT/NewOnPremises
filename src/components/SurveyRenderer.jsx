@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Model } from "survey-core";
 import { Survey } from "survey-react-ui";
-import "survey-core/survey-core.css";
+// import "survey-core/survey-core.css";
 import { fetchDefaultStyles } from "../api/fetchDefaultStyles";
 import { fetchFontStyles } from "../api/fetchFontStyles";
 import "survey-core/survey.i18n";
@@ -54,11 +54,6 @@ const SurveyRenderer = ({
 
   useEffect(() => {}, [fnModule]);
 
-  // if (survey) {
-  //   survey.onCurrentPageChanged.add((sender, options) => {
-  //     console.log("Current page no:", options.newCurrentPage.num);
-  //   });
-  // }
 
   if (fnModule) {
     console.log("Current page no I:", survey.currentPageNo);
