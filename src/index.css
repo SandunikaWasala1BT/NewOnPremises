@@ -23,7 +23,3 @@ body{
 .sd-table__cell--row-text{background-color:#ffffff00}
 .sd-table__cell--row-text{color:#ffffff}
 .sd-table__cell--header{color:#ffffff} */
-
-.sv-list__item--hovered .sv-list__item-body {
-  background-color: transparent !important;
-}

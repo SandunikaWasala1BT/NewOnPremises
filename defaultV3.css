@@ -860,14 +860,18 @@ sv-popup {
   font-family: var(--sjs-font-family, var(--font-family, var(--sjs-default-font-family)));
   padding: calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px)))) calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px)))) calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px)))) var(--sjs-base-unit, var(--base-unit, 8px));
 }
+
+/* Qualify Phone Dropdown Item Hover/Focus*/
 .sv-popup--menu-phone .sv-list__item:hover .sv-list__item-body,
 .sv-popup--menu-phone .sv-list__item:focus .sv-list__item-body,
 .sv-popup--menu-phone .sv-list__item--focused .sv-list__item-body,
 .sv-popup--menu-tablet .sv-list__item:hover .sv-list__item-body,
 .sv-popup--menu-tablet .sv-list__item:focus .sv-list__item-body,
 .sv-popup--menu-tablet .sv-list__item--focused .sv-list__item-body {
-  background: var(--sjs-general-backcolor, var(--background, #fff));
+  background: var(--sjs-general-backcolor, var(--background, #191c4271));
 }
+
+/* Qualify Phone Dropdown Selected Item Hover/Focus*/
 .sv-popup--menu-phone .sv-list__item:hover.sv-list__item--selected .sv-list__item-body,
 .sv-popup--menu-phone .sv-list__item:focus.sv-list__item--selected .sv-list__item-body,
 .sv-popup--menu-phone .sv-list__item--focused.sv-list__item--selected .sv-list__item-body,
@@ -878,14 +882,16 @@ sv-popup {
   color: var(--sjs-primary-forecolor, var(--primary-foreground, #fff));
   font-weight: 600;
 }
+
+/* Qualify Phone Multiselect Selected Item Hover/Focus*/
 .sv-popup--menu-phone.sv-multi-select-list .sv-list__item:hover.sv-list__item--selected .sv-list__item-body,
 .sv-popup--menu-phone.sv-multi-select-list .sv-list__item:focus.sv-list__item--selected .sv-list__item-body,
 .sv-popup--menu-phone.sv-multi-select-list .sv-list__item--focused.sv-list__item--selected .sv-list__item-body,
 .sv-popup--menu-tablet.sv-multi-select-list .sv-list__item:hover.sv-list__item--selected .sv-list__item-body,
 .sv-popup--menu-tablet.sv-multi-select-list .sv-list__item:focus.sv-list__item--selected .sv-list__item-body,
 .sv-popup--menu-tablet.sv-multi-select-list .sv-list__item--focused.sv-list__item--selected .sv-list__item-body {
-  background: var(--sjs-primary-backcolor-light, var(--primary-light, rgba(25, 179, 148, 0.1)));
-  color: var(--sjs-general-forecolor, var(--foreground, #161616));
+  background: var(--sjs-primary-backcolor-light, var(--primary-light, #19b394));
+  color: var(--sjs-general-forecolor, var(--foreground, #ffffff));
   font-weight: 400;
 }
 
@@ -1858,9 +1864,10 @@ sv-brand-info,
   outline: none;
 }
 
+/* Qualify Dropdown Item Hover */
 .sv-list__item:focus .sv-list__item-body,
 .sv-list__item--hovered > .sv-list__item-body {
-  background-color: var(--sjs-questionpanel-hovercolor, var(--sjs-general-backcolor-dark, (248, 248, 248)));
+  background-color: #19b3941a;
 }
 
 .sv-list__item--with-icon.sv-list__item--with-icon {
@@ -1918,12 +1925,13 @@ sv-brand-info,
   display: none;
 }
 
+/* Qualify Dropdown Selected Item (Even with hover/focus) */
 .sv-list__item.sv-list__item--selected > .sv-list__item-body,
 .sv-list__item.sv-list__item--selected:hover > .sv-list__item-body,
 .sv-list__item.sv-list__item--selected.sv-list__item--focused > .sv-list__item-body,
 .sv-multi-select-list .sv-list__item.sv-list__item--selected.sv-list__item--focused > .sv-list__item-body,
 li:focus .sv-list__item.sv-list__item--selected > .sv-list__item-body {
-  background-color: var(--sjs-primary-backcolor, var(--primary, #19b394));
+  background-color: #19b394;
   color: var(--sjs-primary-forecolor, var(--primary-foreground, #fff));
   font-weight: 600;
 }
@@ -1942,10 +1950,11 @@ li:focus .sv-list__item.sv-list__item--selected .sv-list-item__marker-icon use {
   fill: var(--sjs-primary-forecolor, var(--primary-foreground, #fff));
 }
 
+/* Qualify Multiselect Selected Item (Even with hover) */
 .sv-multi-select-list .sv-list__item.sv-list__item--selected .sv-list__item-body,
 .sv-multi-select-list .sv-list__item.sv-list__item--selected:hover .sv-list__item-body {
-  background-color: var(--sjs-primary-backcolor-light, var(--primary-light, rgba(25, 179, 148, 0.1)));
-  color: var(--sjs-font-questiontitle-color, var(--sjs-general-forecolor, var(--foreground, #161616)));
+  background-color: #19b394;
+  color: #ffffff;
   font-weight: 400;
 }
 
@@ -2206,7 +2215,7 @@ li:focus .sv-list__item.sv-list__item--selected .sv-list-item__marker-icon use {
 .sd-title.sd-element__title {
   font-family: var(--sjs-font-questiontitle-family, var(--sjs-font-family, var(--font-family, var(--sjs-default-font-family))));
   font-weight: var(--sjs-font-questiontitle-weight, 600);
-  color: var(--sjs-font-questiontitle-color, var(--sjs-general-forecolor, var(--foreground, #f2f2f2)));
+  color: var(--sjs-font-questiontitle-color, var(--sjs-general-forecolor, var(--foreground, #161616)));
 }
 
 .sd-element__header .sv-string-editor {
@@ -2317,6 +2326,7 @@ li:focus .sv-list__item.sv-list__item--selected .sv-list-item__marker-icon use {
   fill: var(--sjs-general-forecolor-light, var(--foreground-light, #909090));
 }
 
+/* Qualify Question Element */
 .sd-element--with-frame {
   border-radius: var(--sjs-questionpanel-cornerRadius, var(--sjs-corner-radius, 4px));
   box-sizing: border-box;
@@ -2324,7 +2334,7 @@ li:focus .sv-list__item.sv-list__item--selected .sv-list-item__marker-icon use {
   padding-left: calc(var(--sd-base-padding) + var(--sv-element-add-padding-left, 0px));
   padding-right: calc(var(--sd-base-padding) + var(--sv-element-add-padding-right, 0px));
   padding-bottom: var(--sd-base-padding);
-  background: var(--sjs-questionpanel-backcolor, var(--sjs-question-background, var(--sjs-general-backcolor, var(--background, #191C42))));
+  background: #191C42;
   box-shadow: var(--sjs-shadow-small, 0px 1px 2px 0px rgba(0, 0, 0, 0.15));
 }
 
@@ -4031,22 +4041,24 @@ textarea.sd-input:disabled:not(.sd-input--disabled) {
   padding: 0;
 }
 
+/* Qualify Page title */
 .sd-page .sd-page__title {
   --page-title-font-size: var(--sjs-font-pagetitle-size, calc(1.5 * (var(--sjs-font-size, 16px))));
   font-family: var(--sjs-font-pagetitle-family, var(--sjs-font-family, var(--font-family, var(--sjs-default-font-family))));
   font-weight: var(--sjs-font-pagetitle-weight, 700);
   font-size: var(--page-title-font-size);
-  color: var(--sjs-font-pagetitle-color, var(--sjs-general-dim-forecolor, rgba(0, 0, 0, 0.91)));
+  color: #ffffff;
   position: static;
   line-height: calc(1.33 * (var(--page-title-font-size)));
   margin: 0 0 calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px)))) 0px;
 }
 
+/* Qualify Page description */
 .sd-page .sd-page__description {
   font-family: var(--sjs-font-pagedescription-family, var(--sjs-font-family, var(--font-family, var(--sjs-default-font-family))));
   font-weight: var(--sjs-font-pagedescription-weight, 400);
   font-size: var(--sjs-font-pagedescription-size, var(--sjs-font-size, 16px));
-  color: var(--sjs-font-pagedescription-color, var(--sjs-general-dim-forecolor-light, rgba(0, 0, 0, 0.45)));
+  color: #909090;
   position: static;
   line-height: calc(1.5 * (var(--sjs-font-pagedescription-size, var(--sjs-font-size, 16px))));
   margin: 0 0 calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px)))) 0;
@@ -4262,6 +4274,7 @@ textarea.sd-input:disabled:not(.sd-input--disabled) {
   justify-content: space-between;
 }
 
+/* Qualify Header Background color */
 .sd-root-modern .sd-container-modern__title {
   background-color: var(--sjs-general-backcolor, var(--background, #191C42));
 }
@@ -4375,13 +4388,14 @@ textarea.sd-input:disabled:not(.sd-input--disabled) {
   background: var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
 
+/* Qualify Radio/Checkbox Question Label*/
 .sd-item__control-label {
   font-family: var(--sjs-font-editorfont-family, var(--sjs-font-family, var(--font-family, var(--sjs-default-font-family))));
   font-style: normal;
   font-weight: var(--sjs-font-editorfont-weight, 400);
   line-height: calc(1.5 * (var(--sjs-font-editorfont-size, var(--sjs-font-size, 16px))));
   font-size: var(--sjs-font-editorfont-size, var(--sjs-font-size, 16px));
-  color: var(--sjs-font-questiontitle-color, var(--sjs-general-forecolor, var(--foreground, #161616)));
+  color: #ffffff;
   white-space: normal;
   width: 100%;
   text-align: start;
@@ -5974,8 +5988,7 @@ select.sd-dropdown {
   line-height: var(--sjs-article-font-default-lineHeight, 28px);
   text-indent: var(--sjs-article-font-default-paragraphIndent, 0px);
   text-transform: var(--sjs-article-font-default-textCase, "none");
-  color: var(--sjs-font-pagetitle-color, var(--sjs-general-dim-forecolor, rgba(255, 255, 255, 0.91)));
-  background-color: #191C42;
+  color: var(--sjs-font-pagetitle-color, var(--sjs-general-dim-forecolor, rgba(0, 0, 0, 0.91)));
 }
 .sd-html h1 {
   font-size: var(--sjs-article-font-xx-large-fontSize, calc(4 * (var(--sjs-font-size, 16px))));
@@ -6203,11 +6216,12 @@ select.sd-dropdown {
   display: none;
 }
 
+/* Qualify Yes/No Button Selected Option */
 .sd-boolean__thumb {
   position: absolute;
   left: calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
   transform: translateX(0);
-  background-color: var(--sjs-questionpanel-backcolor, var(--sjs-question-background, var(--sjs-general-backcolor, var(--background, #fff))));
+  background-color: #191C42;
   box-shadow: var(--sjs-shadow-small, 0px 1px 2px 0px rgba(0, 0, 0, 0.15));
   border-radius: calc(12.5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
   transition-duration: 0.2s;
@@ -7751,12 +7765,13 @@ input[type=range][name=range-input].sd-slider__input::-moz-range-thumb {
   display: none;
 }
 
+/* Qualify Button */
 .sd-btn {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   padding: calc(2 * (var(--sjs-base-unit, var(--base-unit, 8px)))) calc(6 * (var(--sjs-base-unit, var(--base-unit, 8px))));
-  background: var(--sjs-questionpanel-backcolor, var(--sjs-question-background, var(--sjs-general-backcolor, var(--background, #fff))));
+  background: #191C42;
   border-radius: var(--sjs-corner-radius, 4px);
   cursor: pointer;
   font-family: var(--sjs-font-family, var(--font-family, var(--sjs-default-font-family)));
@@ -7766,9 +7781,9 @@ input[type=range][name=range-input].sd-slider__input::-moz-range-thumb {
   line-height: calc(1.5 * (var(--sjs-font-size, 16px)));
   text-align: center;
   color: var(--sjs-primary-backcolor, var(--primary, #19b394));
-  border: none;
+  border: 2px solid rgba(0, 0, 0, 0);
   outline: none;
-  box-shadow: var(--sjs-shadow-small, 0px 1px 2px 0px rgba(0, 0, 0, 0.15)), 0 0 0 0px var(--sjs-primary-backcolor, var(--primary, #19b394));
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
   transition: box-shadow var(--sjs-transition-duration, 150ms), background var(--sjs-transition-duration, 150ms);
 }
 
@@ -7777,8 +7792,9 @@ input[type=range][name=range-input].sd-slider__input::-moz-range-thumb {
   padding: calc(1.5 * (var(--sjs-base-unit, var(--base-unit, 8px)))) calc(4 * (var(--sjs-base-unit, var(--base-unit, 8px))));
 }
 
+/* Qualify Button Hover */
 .sd-btn:hover {
-  background-color: var(--sjs-questionpanel-hovercolor, var(--sjs-general-backcolor-dark, rgb(248, 248, 248)));
+  box-shadow: 0 0 0 2px var(--primary, #19b394);
 }
 
 .sd-btn:focus-visible {
@@ -9099,11 +9115,12 @@ svg.sd-action--icon {
   display: flex;
 }
 
+/* Qualify Header description */
 .sv-header__description .sd-description {
   --header-description-font-size: var(--sjs-font-headerdescription-size, 20px);
   font-size: var(--header-description-font-size);
   line-height: calc(1.5 * (var(--header-description-font-size)));
-  color: var(--sjs-font-headerdescription-color, var(--sjs-font-pagedescription-color, var(--sjs-general-dim-forecolor-light, rgba(0, 0, 0, 0.45))));
+  color: #ffffff;
   font-family: var(--sjs-font-headerdescription-family, var(--sjs-font-family, var(--font-family, var(--sjs-default-font-family))));
   font-weight: var(--sjs-font-headerdescription-weight, 400);
   margin: 0;
@@ -9418,6 +9435,7 @@ body {
   --sv-defaultV2-mark: true;
 }
 
+/* Qualify Survey body */
 .sd-root-modern {
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
@@ -9425,7 +9443,7 @@ body {
   --sd-timer-size: calc(18 * var(--sjs-base-unit, var(--base-unit, 8px)));
   width: 100%;
   font-family: var(--sjs-font-family, var(--font-family, var(--sjs-default-font-family)));
-  background-color: var(--sjs-general-backcolor-dim, var(--background-dim, #191c42));
+  background-color: var(--sjs-general-backcolor-dim, var(--background-dim, #191C42));
   position: relative;
 }
 @-moz-document url-prefix() {
@@ -9549,6 +9567,16 @@ body {
 .sv-components-container-right,
 .sv-components-container-left {
   width: fit-content;
+}
+
+/* Qualify Question Title */
+.sd-question__header .sd-title {
+	color: #ffffff;
+}
+
+/* Qualify Question Description */
+.sd-question__description {
+	color: #909090;
 }
 
 /*# sourceMappingURL=survey-core.css.map*/

@@ -17,7 +17,7 @@ const Home = () => {
 
   const newOrigin =
     // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/tdsynnex-bc";
-  window.location.href;
+    window.location.href;
 
   useEffect(() => {
     const setDefaultStylesFile = () => {
@@ -25,7 +25,9 @@ const Home = () => {
       var link = document.createElement("link");
       link.rel = "stylesheet";
       link.type = "text/css";
-      link.href = `${import.meta.env.VITE_AZURE_BLOB_URL}/${slogan}/defaultCss.css`;
+      link.href = `${
+        import.meta.env.VITE_AZURE_BLOB_URL
+      }/${slogan}/defaultCss.css`;
       document.getElementsByTagName("head")[0].appendChild(link);
     };
     const getSchema = async () => {
@@ -36,7 +38,7 @@ const Home = () => {
           const schema = data?.content;
           setSurveyJson(schema);
           configureGoogleAnalytics("G-89PH50057J");
-          if (data.customCssBlobUrl ) {
+          if (data.customCssBlobUrl) {
             var link = document.createElement("link");
             link.rel = "stylesheet";
             link.type = "text/css";
