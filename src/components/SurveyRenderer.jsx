@@ -54,26 +54,44 @@ const SurveyRenderer = ({
 
   useEffect(() => {}, [fnModule]);
 
-
   if (fnModule) {
-    console.log("Current page no I:", survey.currentPageNo);
-    console.log("Is first page:", survey.isFirstPage);
-    console.log("Is last page:", survey.isLastPage);
     const sessionDetailsId = generateGUID();
+
+    survey.onAfterRenderPage.add(function (sender, options) {
+      if (fnModule.afterRenderConfig) {
+        fnModule.afterRenderConfig(sender, options);
+      }
+    });
+
     survey.onCurrentPageChanged.add(async (sender, options) => {
       googleAnalyticsOnPageChanged(sender, options, sessionDetailsId);
-      // console.log("Current page no II:", options.newCurrentPage.num);
-      console.log("Current page no I:", survey.currentPageNo);
-      console.log("Is first page:", survey.isFirstPage);
-      console.log("Is last page:", survey.isLastPage);
+
+      if (fnModule.currentPageChangedConfig) {
+        fnModule.currentPageChangedConfig(sender, options);
+      }
     });
+
+    survey.onValueChanging.add(function (sender, options) {
+      if (fnModule.valueChangingConfig) {
+        fnModule.valueChangingConfig(sender, options);
+      }
+    });
+
+    survey.onValueChanged.add(function (sender, options) {
+      if (fnModule.valueChangedConfig) {
+        fnModule.valueChangedConfig(sender, options);
+      }
+    })
+
     survey.onComplete.add(async (sender, options) => {
       fnModule.setSurvey(sender);
       await fnModule.saveSurveyResults(sender, options);
       googleAnalyticsOnComplete(sender, options, sessionDetailsId);
+
+      if (fnModule.completeConfig) {
+        fnModule.completeConfig(sender, options);
+      }
     });
-    console.log("Page visible count:", survey.visiblePageCount);
-    console.log("Page count:", survey.pageCount);
   }
 
   if (loading) {
