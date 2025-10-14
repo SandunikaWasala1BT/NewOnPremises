@@ -81,7 +81,8 @@ export async function googleAnalyticsOnPageChangedNew(
   pageCount,
   userCountry,
   userCountryCode,
-  timeSpent
+  timeSpent,
+  navigateOrder
 ) {
   const nowUTC = new Date().toISOString();
 
@@ -103,6 +104,7 @@ export async function googleAnalyticsOnPageChangedNew(
     pageCount: pageCount,
     answeredQuestionList: surveyData,
     timeSpent: timeSpent,
+    navigateOrder: navigateOrder,
   };
 
   try {
@@ -147,7 +149,8 @@ export async function googleAnalyticsOnCompleteNew(
   pageCount,
   userCountry,
   userCountryCode,
-  timeSpent
+  timeSpent,
+  navigateOrder
 ) {
   const nowUTC = new Date().toISOString();
 
@@ -169,6 +172,7 @@ export async function googleAnalyticsOnCompleteNew(
     pageCount: pageCount,
     answeredQuestionList: surveyData,
     timeSpent: timeSpent,
+    navigateOrder: navigateOrder,
   };
 
   try {

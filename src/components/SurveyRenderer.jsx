@@ -13,6 +13,7 @@ import {
   googleAnalyticsOnCompleteNew,
 } from "../utils/configureGoogleAnalytcs";
 let surveyOnLoadCheck = false;
+let navigateOrder = 1;
 const sessionDetailsId = generateGUID();
 
 const SurveyRenderer = ({
@@ -89,9 +90,11 @@ const SurveyRenderer = ({
         survey.pageCount,
         userCountry,
         userCountryCode,
-        survey.timeSpent
+        survey.timeSpent,
+        navigateOrder
       );
       surveyOnLoadCheck = true;
+      navigateOrder = navigateOrder + 1;
     }
 
     survey.onAfterRenderPage.add(function (sender, options) {
@@ -112,8 +115,10 @@ const SurveyRenderer = ({
         survey.pageCount,
         userCountry,
         userCountryCode,
-        sender.timeSpent
+        sender.timeSpent,
+        navigateOrder
       );
+      navigateOrder = navigateOrder + 1;
 
       if (fnModule.currentPageChangedConfig) {
         fnModule.currentPageChangedConfig(sender, options);
@@ -146,8 +151,10 @@ const SurveyRenderer = ({
         survey.pageCount,
         userCountry,
         userCountryCode,
-        sender.timeSpent
+        sender.timeSpent,
+        navigateOrder
       );
+      navigateOrder = navigateOrder + 1;
 
       if (fnModule.completeConfig) {
         fnModule.completeConfig(sender, options);
