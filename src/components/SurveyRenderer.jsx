@@ -137,7 +137,7 @@ const SurveyRenderer = ({
       await fnModule.saveSurveyResults(sender, options);
       googleAnalyticsOnCompleteNew(
         sender.data,
-        options.oldCurrentPage.name,
+        0,
         sessionDetailsId,
         survey.currentPageNo,
         survey.isFirstPage,
