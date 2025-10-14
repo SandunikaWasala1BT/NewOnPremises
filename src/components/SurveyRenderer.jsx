@@ -9,9 +9,11 @@ import { fetchFontStyles } from "../api/fetchFontStyles";
 import "survey-core/survey.i18n";
 import {
   generateGUID,
-  googleAnalyticsOnComplete,
-  googleAnalyticsOnPageChanged,
+  googleAnalyticsOnPageChangedNew,
+  googleAnalyticsOnCompleteNew,
 } from "../utils/configureGoogleAnalytcs";
+let surveyOnLoadCheck = false;
+const sessionDetailsId = generateGUID();
 
 const SurveyRenderer = ({
   schema,
@@ -26,6 +28,26 @@ const SurveyRenderer = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [fnModule, setFnModule] = useState(null);
+  const [userCountry, setUserCountry] = useState(null); // <-- here
+  const [userCountryCode, setUserCountryCode] = useState(null); // <-- here
+  survey.startTimer();
+
+  // Fetch user country using IP
+  useEffect(() => {
+    const fetchUserCountry = async () => {
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+        setUserCountry(data.country_name); // e.g., "Sri Lanka"
+        console.log("User country:", data.country_name);
+        setUserCountryCode(data.country); // e.g., "Sri Lanka"
+        console.log("User country code:", data.country);
+      } catch (err) {
+        console.warn("Failed to fetch user country:", err);
+      }
+    };
+    fetchUserCountry();
+  }, []);
 
   useEffect(() => {
     const importFnModule = async (surveySlogan) => {
@@ -55,7 +77,22 @@ const SurveyRenderer = ({
   useEffect(() => {}, [fnModule]);
 
   if (fnModule) {
-    const sessionDetailsId = generateGUID();
+    if (!surveyOnLoadCheck) {
+      googleAnalyticsOnPageChangedNew(
+        survey.data,
+        0,
+        sessionDetailsId,
+        survey.currentPageNo,
+        survey.isFirstPage,
+        survey.isLastPage,
+        survey.currentPage.name,
+        survey.pageCount,
+        userCountry,
+        userCountryCode,
+        survey.timeSpent
+      );
+      surveyOnLoadCheck = true;
+    }
 
     survey.onAfterRenderPage.add(function (sender, options) {
       if (fnModule.afterRenderConfig) {
@@ -64,7 +101,19 @@ const SurveyRenderer = ({
     });
 
     survey.onCurrentPageChanged.add(async (sender, options) => {
-      googleAnalyticsOnPageChanged(sender, options, sessionDetailsId);
+      googleAnalyticsOnPageChangedNew(
+        sender.data,
+        options.oldCurrentPage.name,
+        sessionDetailsId,
+        survey.currentPageNo,
+        survey.isFirstPage,
+        survey.isLastPage,
+        survey.currentPage.name,
+        survey.pageCount,
+        userCountry,
+        userCountryCode,
+        sender.timeSpent
+      );
 
       if (fnModule.currentPageChangedConfig) {
         fnModule.currentPageChangedConfig(sender, options);
@@ -81,12 +130,24 @@ const SurveyRenderer = ({
       if (fnModule.valueChangedConfig) {
         fnModule.valueChangedConfig(sender, options);
       }
-    })
+    });
 
     survey.onComplete.add(async (sender, options) => {
       fnModule.setSurvey(sender);
       await fnModule.saveSurveyResults(sender, options);
-      googleAnalyticsOnComplete(sender, options, sessionDetailsId);
+      googleAnalyticsOnCompleteNew(
+        sender.data,
+        options.oldCurrentPage.name,
+        sessionDetailsId,
+        survey.currentPageNo,
+        survey.isFirstPage,
+        survey.isLastPage,
+        survey.currentPage.name,
+        survey.pageCount,
+        userCountry,
+        userCountryCode,
+        sender.timeSpent
+      );
 
       if (fnModule.completeConfig) {
         fnModule.completeConfig(sender, options);

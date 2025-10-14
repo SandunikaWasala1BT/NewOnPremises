@@ -13,9 +13,9 @@ body{
 }
 
 /* Yes/No button box shadow */
-.sd-boolean.sd-boolean--allowhover:focus-within {
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.055) !important;
-}
+/* .sd-boolean.sd-boolean--allowhover:focus-within {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.055);
+} */
 
 /* .sd-table-wrapper::before,.sd-table-wrapper::after {background:#ffffff00}
 .sd-table{background:#ffffff00}
