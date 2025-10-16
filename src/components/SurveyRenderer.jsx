@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Model } from "survey-core";
 import { Survey } from "survey-react-ui";
 // import "survey-core/survey-core.css";
-import { fetchDefaultStyles } from "../api/fetchDefaultStyles";
 import { fetchFontStyles } from "../api/fetchFontStyles";
 import "survey-core/survey.i18n";
 import {
@@ -18,7 +17,6 @@ const sessionDetailsId = generateGUID();
 
 const SurveyRenderer = ({
   schema,
-  newOriginURL,
   surveySlogan,
   surveyInfo,
   surveyQuestionJSON,
@@ -57,7 +55,6 @@ const SurveyRenderer = ({
           `${import.meta.env.VITE_AZURE_BLOB_URL}/${surveySlogan}/index.js`
         );
         if (fnModule) {
-          await fetchDefaultStyles(newOriginURL);
           await fetchFontStyles(surveySlogan);
           fnModule.setSurveyInfo(surveyInfo);
           fnModule.setSurvey(survey);

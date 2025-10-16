@@ -4,7 +4,7 @@ import SurveyRenderer from "./SurveyRenderer";
 import { fetchSurveyInfo } from "../api/fetchSurveyInfo";
 import { fetchLicenseBlocks } from "../api/fetchLicenseBlocks";
 import { api } from "../api/fetchScheme";
-import { configureGoogleAnalytics } from "../utils/configureGoogleAnalytcs";
+import { fetchDefaultStyles } from "../api/fetchDefaultStyles";
 
 const Home = () => {
   const [surveyJson, setSurveyJson] = useState(null);
@@ -16,8 +16,8 @@ const Home = () => {
   const navigate = useNavigate();
 
   const newOrigin =
-    // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/thinkmax-comm-fr";
-    window.location.href;
+    // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/talan-fscm";
+  window.location.href;
 
   useEffect(() => {
     const setDefaultStylesFile = () => {
@@ -37,13 +37,14 @@ const Home = () => {
           const data = response.data;
           const schema = data?.content;
           setSurveyJson(schema);
-          configureGoogleAnalytics("G-89PH50057J");
           if (data.customCssBlobUrl) {
             var link = document.createElement("link");
             link.rel = "stylesheet";
             link.type = "text/css";
             link.href = data.customCssBlobUrl;
             document.getElementsByTagName("head")[0].appendChild(link);
+          } else {
+            await fetchDefaultStyles(newOrigin);
           }
         } else if (response.status === 404) {
           return navigate("/not-found");
@@ -100,7 +101,6 @@ const Home = () => {
       ) : surveyJson && surveyInfo && surveyQuestions ? (
         <SurveyRenderer
           schema={surveyJson}
-          newOriginURL={newOrigin}
           surveySlogan={slogan}
           surveyInfo={surveyInfo}
           surveyQuestionJSON={surveyQuestions}
