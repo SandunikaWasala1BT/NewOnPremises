@@ -11,6 +11,7 @@ import {
   googleAnalyticsOnPageChangedNew,
   googleAnalyticsOnCompleteNew,
 } from "../utils/configureGoogleAnalytcs";
+import * as surveyCore from "survey-core";
 let surveyOnLoadCheck = false;
 let navigateOrder = 1;
 const sessionDetailsId = generateGUID();
@@ -96,11 +97,16 @@ const SurveyRenderer = ({
 
     survey.onAfterRenderPage.add(function (sender, options) {
       if (fnModule.afterRenderConfig) {
-        fnModule.afterRenderConfig(sender, options);
+        const context = {
+          sender,
+          options,
+          surveyCore,
+        };
+        fnModule.afterRenderConfig(context);
       }
     });
 
-    survey.onCurrentPageChanged.add(async (sender, options) => {
+    survey.onCurrentPageChanged.add((sender, options) => {
       googleAnalyticsOnPageChangedNew(
         sender.data,
         options.oldCurrentPage.name,
@@ -118,19 +124,34 @@ const SurveyRenderer = ({
       navigateOrder = navigateOrder + 1;
 
       if (fnModule.currentPageChangedConfig) {
-        fnModule.currentPageChangedConfig(sender, options);
+        const context = {
+          sender,
+          options,
+          surveyCore,
+        };
+        fnModule.currentPageChangedConfig(context);
       }
     });
 
     survey.onValueChanging.add(function (sender, options) {
       if (fnModule.valueChangingConfig) {
-        fnModule.valueChangingConfig(sender, options);
+        const context = {
+          sender,
+          options,
+          surveyCore,
+        };
+        fnModule.valueChangingConfig(context);
       }
     });
 
     survey.onValueChanged.add(function (sender, options) {
       if (fnModule.valueChangedConfig) {
-        fnModule.valueChangedConfig(sender, options);
+        const context = {
+          sender,
+          options,
+          surveyCore,
+        };
+        fnModule.valueChangedConfig(context);
       }
     });
 
@@ -154,7 +175,12 @@ const SurveyRenderer = ({
       navigateOrder = navigateOrder + 1;
 
       if (fnModule.completeConfig) {
-        fnModule.completeConfig(sender, options);
+        const context = {
+          sender,
+          options,
+          surveyCore,
+        };
+        fnModule.completeConfig(context);
       }
     });
   }
