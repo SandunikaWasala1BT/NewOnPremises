@@ -163,6 +163,8 @@ const SurveyRenderer = ({
           surveyCore,
         };
         fnModule.serverValidateQuestionsConfig(context);
+      } else {
+        options.complete();
       }
     });
 
