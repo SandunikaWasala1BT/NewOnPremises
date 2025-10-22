@@ -155,6 +155,17 @@ const SurveyRenderer = ({
       }
     });
 
+    survey.onServerValidateQuestions.add(function (sender, options) {
+      if (fnModule.serverValidateQuestionsConfig) {
+        const context = {
+          sender,
+          options,
+          surveyCore,
+        };
+        fnModule.serverValidateQuestionsConfig(context);
+      }
+    });
+
     survey.onComplete.add(async (sender, options) => {
       fnModule.setSurvey(sender);
       await fnModule.saveSurveyResults(sender, options);

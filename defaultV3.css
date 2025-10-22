@@ -627,6 +627,8 @@ sv-popup {
   border-radius: var(--lbr-popup-menu-corner-radius, var(--sjs-corner-radius, 4px));
   box-shadow: var(--sjs-shadow-medium, 0px 2px 6px 0px rgba(0, 0, 0, 0.1)), var(--sjs-shadow-large, 0px 8px 16px 0px rgba(0, 0, 0, 0.1));
 }
+
+/* Qualify Dropdown */
 .sv-popup--menu-popup > .sv-popup__container > .sv-popup__body-content {
   background-color: var(--lbr-popup-menu-background-color, var(--sjs-general-backcolor, var(--background, #fff)));
   border-radius: var(--lbr-popup-menu-corner-radius, var(--sjs-corner-radius, 4px));
@@ -2793,6 +2795,7 @@ li:focus .sv-list__item.sv-list__item--selected .sv-list-item__marker-icon use {
   display: block;
 }
 
+/* Qualify Input element */
 .sd-input:focus {
   box-shadow: var(--sjs-shadow-inner-reset, inset 0px 0px 0px 0px rgba(0, 0, 0, 0.15)), 0 0 0 2px var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
@@ -3169,11 +3172,14 @@ textarea.sd-input:disabled:not(.sd-input--disabled) {
   width: calc(2 * (var(--sjs-base-unit, var(--base-unit, 8px))));
   height: calc(2 * (var(--sjs-base-unit, var(--base-unit, 8px))));
 }
+
+/* Qualify Checkbox Question Checked Mark */
 .sd-checkbox__svg use {
   fill: transparent;
   transition: fill var(--sjs-transition-duration, 150ms);
 }
 
+/* Qualify Checkbox Question Checked Mark When Checked */
 .sd-checkbox--checked .sd-checkbox__svg use {
   fill: var(--sjs-primary-forecolor, var(--primary-foreground, #fff));
 }
@@ -3182,6 +3188,7 @@ textarea.sd-input:disabled:not(.sd-input--disabled) {
   fill: var(--sjs-border-default, var(--border, #d6d6d6));
 }
 
+/* Qualify Checkbox Question Checked Mark When Focus */
 .sd-checkbox--checked .sd-checkbox__control:focus + .sd-checkbox__decorator .sd-checkbox__svg use {
   fill: var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
@@ -4223,6 +4230,7 @@ textarea.sd-input:disabled:not(.sd-input--disabled) {
   white-space: normal;
 }
 
+/* Qualify Header */
 .sd-title.sd-container-modern__title {
   display: flex;
   align-items: center;
@@ -4244,6 +4252,8 @@ textarea.sd-input:disabled:not(.sd-input--disabled) {
   gap: var(--sjs-base-unit, var(--base-unit, 8px));
   flex-grow: 1;
 }
+
+/* Qualify Survey Title */
 .sd-header__text .sd-title {
   --survey-title-font-size: var(--sjs-font-surveytitle-size, calc(2 * (var(--sjs-font-size, 16px))));
   font-size: var(--survey-title-font-size);
@@ -4373,17 +4383,20 @@ textarea.sd-input:disabled:not(.sd-input--disabled) {
   box-shadow: none;
 }
 
+/* Qualify Radio/Checkbox Question Box When Focus */
 .sd-item__control:focus + .sd-item__decorator {
   background: var(--sjs-questionpanel-backcolor, var(--sjs-question-background, var(--sjs-general-backcolor, var(--background, #fff))));
   outline: none;
   box-shadow: var(--sjs-shadow-inner-reset, inset 0px 0px 0px 0px rgba(0, 0, 0, 0.15)), 0 0 0 2px var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
 
+/* Qualify Radio/Checkbox Question Box When Hover */
 .sd-item--allowhover:not(.sd-item--readonly) .sd-selectbase__label:hover .sd-item__decorator {
   background: var(--sjs-editorpanel-hovercolor, var(--sjs-general-backcolor-dim-dark, rgb(243, 243, 243)));
   outline: none;
 }
 
+/* Qualify Radio/Checkbox Question Box When Checked */
 .sd-item--checked .sd-item__decorator {
   background: var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
@@ -4517,6 +4530,8 @@ div[class*=sv-q-column-]:not(:first-of-type) .sd-item--enter {
 .sd-radio__decorator {
   border-radius: 50%;
 }
+
+/* Qualify Radio Question Dot */
 .sd-radio__decorator:after {
   content: " ";
   display: block;
@@ -4527,6 +4542,7 @@ div[class*=sv-q-column-]:not(:first-of-type) .sd-item--enter {
   transition: background-color var(--sjs-transition-duration, 150ms);
 }
 
+/* Qualify Radio Question Dot When Checked */
 .sd-radio--checked .sd-radio__decorator:after {
   content: " ";
   display: block;
@@ -4554,6 +4570,7 @@ div[class*=sv-q-column-]:not(:first-of-type) .sd-item--enter {
   height: calc(2.5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
 }
 
+/* Qualify Radio Question Dot When Focus */
 .sd-radio--checked .sd-radio__control:focus + .sd-radio__decorator:after {
   background-color: var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
@@ -6160,6 +6177,7 @@ select.sd-dropdown {
   box-shadow: var(--sjs-shadow-medium, 0px 2px 6px 0px rgba(0, 0, 0, 0.1)), var(--sjs-shadow-small, 0px 1px 2px 0px rgba(0, 0, 0, 0.15));
 }
 
+/* Qualify Yes/No button */
 .sd-boolean {
   display: flex;
   width: max-content;
@@ -6168,11 +6186,13 @@ select.sd-dropdown {
   padding: calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
   background-color: var(--sjs-editorpanel-backcolor, var(--sjs-editor-background, var(--sjs-general-backcolor-dim-light, var(--background-dim-light, #f9f9f9))));
   border-radius: calc(12.5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
-  box-shadow: var(--sjs-shadow-inner, inset 0px 1px 2px 0px rgba(0, 0, 0, 0.15)), 0 0 0 0px var(--sjs-primary-backcolor, var(--primary, #19b394));
+  box-shadow: var(--sjs-shadow-inner, inset 0px 1px 2px 0px rgba(0, 0, 0, 0.15)), 0 0 0 0px var(--sjs-primary-backcolor, var(--primary, #000));
   transition: box-shadow var(--sjs-transition-duration, 150ms);
 }
+
+/* Qualify Yes/No button drop shadow when focus */
 .sd-boolean.sd-boolean--allowhover:focus-within {
-  box-shadow: var(--sjs-shadow-inner-reset, inset 0px 0px 0px 0px rgba(0, 0, 0, 0.15)), 0 0 0 2px var(--sjs-primary-backcolor, var(--primary, #19b394));
+  box-shadow: var(--sjs-shadow-inner-reset, inset 0px 1px 2px 0px rgba(0, 0, 0, 0.15)), 0 0 0 0px var(--sjs-primary-backcolor, var(--primary, #000));
 }
 
 .sd-boolean__thumb,
@@ -7807,16 +7827,19 @@ input[type=range][name=range-input].sd-slider__input::-moz-range-thumb {
   pointer-events: none;
 }
 
+/* Qualify Complete Button */
 .sd-btn--action {
   background-color: var(--sjs-primary-backcolor, var(--primary, #19b394));
   color: var(--sjs-primary-forecolor, var(--primary-foreground, #fff));
 }
 
+/* Qualify Complete Button when hover */
 .sd-btn--action:hover {
   color: var(--sjs-primary-forecolor, var(--primary-foreground, #fff));
   background-color: var(--sjs-primary-backcolor-dark, rgb(20, 164, 139));
 }
 
+/* Qualify Complete Button when disabled */
 .sd-btn--action:disabled {
   color: var(--sjs-primary-forecolor-light, var(--primary-foreground-disabled, rgba(255, 255, 255, 0.25)));
   pointer-events: none;
@@ -8076,6 +8099,7 @@ input[type=range][name=range-input].sd-slider__input::-moz-range-thumb {
   padding-left: calc(2 * (var(--sjs-base-unit, var(--base-unit, 8px))));
 }
 
+/* Qualify Multiselect Input element */
 .sd-multipletext__item-container.sd-input:focus-within {
   box-shadow: var(--sjs-shadow-inner-reset, inset 0px 0px 0px 0px rgba(0, 0, 0, 0.15)), 0 0 0 2px var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
@@ -8591,6 +8615,8 @@ svg.sd-action--icon {
   flex-direction: column;
   cursor: pointer;
 }
+
+/* Qualify Progress bar connector */
 .sd-progress-buttons__list li:not(:first-child) > .sd-progress-buttons__connector {
   display: block;
   content: "";
@@ -8603,6 +8629,8 @@ svg.sd-action--icon {
   width: calc(100% - 20px);
   pointer-events: none;
 }
+
+/* Progress button item text */
 .sd-progress-buttons__list li .sd-progress-buttons__button {
   position: relative;
   display: flex;
@@ -8629,6 +8657,8 @@ svg.sd-action--icon {
   left: calc(-1.25 * (var(--sjs-base-unit, var(--base-unit, 8px))));
   z-index: -2;
 }
+
+/* Qualify Progress bar item default */
 .sd-progress-buttons__list li .sd-progress-buttons__button .sd-progress-buttons__button-content {
   position: absolute;
   width: 100%;
@@ -8642,6 +8672,8 @@ svg.sd-action--icon {
   border-radius: 50%;
   box-sizing: content-box;
 }
+
+/* Qualify Progress bar item text hover */
 .sd-progress-buttons__list li:hover .sd-progress-buttons__button {
   color: var(--sjs-primary-backcolor, var(--primary, #19b394));
   padding: calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
@@ -8652,6 +8684,8 @@ svg.sd-action--icon {
 .sd-progress-buttons__list li:hover .sd-progress-buttons__button .sd-progress-buttons__button-background {
   left: calc(-0.75 * (var(--sjs-base-unit, var(--base-unit, 8px))));
 }
+
+/* Qualify Progress bar item hover */
 .sd-progress-buttons__list li:hover .sd-progress-buttons__button .sd-progress-buttons__button-content {
   top: calc(-0.75 * (var(--sjs-base-unit, var(--base-unit, 8px))));
   left: calc(-0.75 * (var(--sjs-base-unit, var(--base-unit, 8px))));
@@ -8659,21 +8693,26 @@ svg.sd-action--icon {
   background-color: var(--sjs-primary-forecolor, var(--primary-foreground, #fff));
   opacity: 1;
 }
+/* Qualify Progress bar passed item connector */
 .sd-progress-buttons__list .sd-progress-buttons__list-element--passed:not(:first-child) > .sd-progress-buttons__connector {
   background-color: var(--sjs-primary-backcolor, var(--primary, #19b394));
   opacity: 1;
 }
+/* Qualify Progress bar passed item text */
 .sd-progress-buttons__list .sd-progress-buttons__list-element--passed .sd-progress-buttons__button {
   background-color: var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
+/* Qualify Progress bar passed item */
 .sd-progress-buttons__list .sd-progress-buttons__list-element--passed .sd-progress-buttons__button .sd-progress-buttons__button-content {
   background-color: var(--sjs-primary-backcolor, var(--primary, #19b394));
   opacity: 1;
 }
+/* Qualify Progress bar current item connector */
 .sd-progress-buttons__list .sd-progress-buttons__list-element--current:not(:first-child) > .sd-progress-buttons__connector {
   background-color: var(--sjs-primary-backcolor, var(--primary, #19b394));
   opacity: 1;
 }
+/* Qualify Progress bar current item text */
 .sd-progress-buttons__list .sd-progress-buttons__list-element--current .sd-progress-buttons__button {
   border: calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px)))) solid var(--sjs-primary-backcolor, var(--primary, #19b394));
   background-color: var(--sjs-primary-forecolor, var(--primary-foreground, #fff));
@@ -8684,6 +8723,8 @@ svg.sd-action--icon {
 .sd-progress-buttons__list .sd-progress-buttons__list-element--current .sd-progress-buttons__button .sd-progress-buttons__button-background {
   left: calc(-0.75 * (var(--sjs-base-unit, var(--base-unit, 8px))));
 }
+
+/* Qualify Progress bar current item */
 .sd-progress-buttons__list .sd-progress-buttons__list-element--current .sd-progress-buttons__button .sd-progress-buttons__button-content {
   border: calc(0.5 * (var(--sjs-base-unit, var(--base-unit, 8px)))) solid var(--sjs-primary-backcolor, var(--primary, #19b394));
   background-color: var(--sjs-primary-forecolor, var(--primary-foreground, #fff));
@@ -8708,6 +8749,7 @@ svg.sd-action--icon {
   margin-bottom: var(--sjs-base-unit, var(--base-unit, 8px));
 }
 
+/* Qualify Progress bar footer text */
 .sd-progress-buttons__footer .sd-progress-buttons__page-title {
   margin-top: var(--sjs-base-unit, var(--base-unit, 8px));
   margin-bottom: 0;
