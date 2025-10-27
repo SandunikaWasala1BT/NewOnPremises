@@ -21,7 +21,7 @@ const Home = () => {
 
   useEffect(() => {
     const setDefaultStylesFile = () => {
-      // Append defaultV2.min.css file to the head after applying the styles
+      // Append defaultV2.min.css file to the head after applying the style
       var link = document.createElement("link");
       link.rel = "stylesheet";
       link.type = "text/css";
