@@ -29,17 +29,16 @@ jobs:
           npm run build --if-present
           npm run test --if-present
 
+      - name: Copy configuration files to dist
+        run: |
+          Copy-Item web.config -Destination dist/
+        shell: powershell
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
           path: dist/
-
-      - name: Upload web config artifact for deployment job
-        uses: actions/upload-artifact@v4
-        with:
-          name: webConfig
-          path: web.config
 
       - name: List files after build
         run: ls -R
@@ -74,11 +73,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-
-      - name: Download web config artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: webConfig
 
       - name: Login to Azure
         uses: azure/login@v2
