@@ -1,0 +1,91 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - gyde365-qualify-survey-portal-prod
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: read #This is required for actions/checkout
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22.16.0"
+
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build --if-present
+          npm run test --if-present
+
+      - name: Copy configuration files to dist
+        run: |
+          Copy-Item web.config -Destination dist/
+        shell: powershell
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-app
+          path: dist/
+
+      - name: List files after build
+        run: ls -R
+
+    env:
+      # Set the environment variable
+      VITE_AZURE_BLOB_URL: ${{ vars.VITE_AZURE_BLOB_URL_PROD }}
+
+      VITE_AZURE_SURVEYJSON_FUNCTION_URL: ${{ vars.VITE_AZURE_SURVEYJSON_FUNCTION_URL_PROD }}
+      VITE_AZURE_SURVEYJSON_FUNCTION_API_CODE: ${{ secrets.VITE_AZURE_SURVEYJSON_FUNCTION_API_CODE_PROD }}
+
+      VITE_AZURE_DEFAULT_STYLE_FUNCTION_URL: ${{ vars.VITE_AZURE_DEFAULT_STYLE_FUNCTION_URL_PROD}}
+      VITE_AZURE_DEFAULT_STYLE_FUNCTION_API_CODE: ${{ secrets.COMMON_FUNCTION_API_CODE_PROD}}
+
+      VITE_AZURE_SURVEYINFO_FUNCTION_URL: ${{ vars.VITE_AZURE_SURVEYINFO_FUNCTION_URL_PROD}}
+      VITE_AZURE_SURVEYINFO_FUNCTION_API_CODE: ${{ secrets.COMMON_FUNCTION_API_CODE_PROD}}
+
+      VITE_AZURE_LICENSE_BLOCK_FUNCTION_URL: ${{ vars.VITE_AZURE_LICENSE_BLOCK_FUNCTION_URL_PROD}}
+      VITE_AZURE_LICENSE_BLOCK_FUNCTION_API_CODE: ${{ secrets.COMMON_FUNCTION_API_CODE_PROD}}
+
+      VITE_AZURE_FONT_FUNCTION_URL: ${{ vars.VITE_AZURE_FONT_FUNCTION_URL_PROD}}
+      VITE_AZURE_FONT_FUNCTION_API_CODE: ${{ secrets.VITE_AZURE_FONT_FUNCTION_API_CODE_PROD}}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: node-app
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DDB0CE0BC7F7418DBBD72824C9CEA3A2 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CAE9E6F95DAB4AF58839BAEA560183AA }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7C1D159718104D6986D4AC5C2E2FDE6D }}
+
+      - name: "Deploy to Azure Web App"
+        uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
+        with:
+          app-name: "gyde365-qualify-survey-portal-prod"
+          slot-name: "Production"
+          package: .
