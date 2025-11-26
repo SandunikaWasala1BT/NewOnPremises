@@ -98,7 +98,7 @@ export async function checkIfCustomCSSFileExists(url) {
       return false;
     }
     // Network error
-    console.error("Error checking file:", error.message);
+    console.log("Error checking file:", error.message);
     return false;
   }
 }
