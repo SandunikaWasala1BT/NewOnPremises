@@ -1828,6 +1828,7 @@ sv-brand-info,
   white-space: nowrap;
 }
 
+/* Qualify Drowpdown item */
 .sv-list__item-body {
   --sjs-list-item-padding-left-default: calc(2 * var(--sjs-base-unit, var(--base-unit, 8px)));
   --sjs-list-item-padding-left: calc(var(--sjs-list-item-level) * var(--sjs-list-item-padding-left-default));
@@ -2773,6 +2774,7 @@ li:focus .sv-list__item.sv-list__item--selected .sv-list-item__marker-icon use {
   display: none;
 }
 
+/* Qualify Input element */
 .sd-input {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2795,7 +2797,7 @@ li:focus .sv-list__item.sv-list__item--selected .sv-list-item__marker-icon use {
   display: block;
 }
 
-/* Qualify Input element */
+/* Qualify Input element when focus */
 .sd-input:focus {
   box-shadow: var(--sjs-shadow-inner-reset, inset 0px 0px 0px 0px rgba(0, 0, 0, 0.15)), 0 0 0 2px var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
@@ -4292,6 +4294,8 @@ textarea.sd-input:disabled:not(.sd-input--disabled) {
 .sd-root-modern .sd-container-modern__title .sd-header__text h3 {
   margin: 0;
 }
+
+/* Qualify Survey Description */
 .sd-root-modern .sd-container-modern__title .sd-description {
   margin: 0;
   color: var(--sjs-general-forecolor-light, var(--foreground-light, #909090));
@@ -5506,6 +5510,7 @@ select.sd-dropdown {
   opacity: 0.24;
 }
 
+/* Qualify Dropdown input when focus */
 .sd-input.sd-dropdown:focus-within {
   box-shadow: var(--sjs-shadow-inner-reset, inset 0px 0px 0px 0px rgba(0, 0, 0, 0.15)), 0 0 0 2px var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
@@ -5649,10 +5654,12 @@ select.sd-dropdown {
   margin: auto 0;
 }
 
+/* Qualify Multiselect Dropdown when focus */
 .sd-input.sd-tagbox:focus-within {
   box-shadow: var(--sjs-shadow-inner-reset, inset 0px 0px 0px 0px rgba(0, 0, 0, 0.15)), 0 0 0 2px var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
 
+/* Qualify Multiselect Selected Item */
 .sv-tagbox__item {
   position: relative;
   display: flex;
@@ -5665,6 +5672,7 @@ select.sd-dropdown {
   box-sizing: border-box;
 }
 
+/* Qualify Multiselect Selected Item Text */
 .sv-tagbox__item-text {
   color: var(--sjs-primary-forecolor, var(--primary-foreground, #fff));
   min-width: calc(5.5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
@@ -5684,6 +5692,7 @@ select.sd-dropdown {
   opacity: 1;
 }
 
+/* Qualify Multiselect Dropdown Selected Option Clear Button */
 .sd-tagbox-item_clean-button {
   display: flex;
   position: absolute;
@@ -8099,7 +8108,6 @@ input[type=range][name=range-input].sd-slider__input::-moz-range-thumb {
   padding-left: calc(2 * (var(--sjs-base-unit, var(--base-unit, 8px))));
 }
 
-/* Qualify Multiselect Input element */
 .sd-multipletext__item-container.sd-input:focus-within {
   box-shadow: var(--sjs-shadow-inner-reset, inset 0px 0px 0px 0px rgba(0, 0, 0, 0.15)), 0 0 0 2px var(--sjs-primary-backcolor, var(--primary, #19b394));
 }
@@ -8731,6 +8739,7 @@ svg.sd-action--icon {
   opacity: 1;
 }
 
+/* Qualify progress bar label */
 .sd-progress-buttons__page-title {
   display: flex;
   justify-content: center;
@@ -9157,7 +9166,6 @@ svg.sd-action--icon {
   display: flex;
 }
 
-/* Qualify Header description */
 .sv-header__description .sd-description {
   --header-description-font-size: var(--sjs-font-headerdescription-size, 20px);
   font-size: var(--header-description-font-size);

@@ -87,3 +87,18 @@ export const fetchDefaultStyles = async (newOriginURL) => {
     throw error;
   }
 };
+
+export async function checkIfCustomCSSFileExists(url) {
+  try {
+    const response = await axios.head(url);
+    return response.status === 200;
+  } catch (error) {
+    if (error.response) {
+      // File doesn't exist (404) or other HTTP error
+      return false;
+    }
+    // Network error
+    console.error("Error checking file:", error.message);
+    return false;
+  }
+}

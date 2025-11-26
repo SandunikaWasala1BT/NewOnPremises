@@ -4,7 +4,10 @@ import SurveyRenderer from "./SurveyRenderer";
 import { fetchSurveyInfo } from "../api/fetchSurveyInfo";
 import { fetchLicenseBlocks } from "../api/fetchLicenseBlocks";
 import { api } from "../api/fetchScheme";
-import { fetchDefaultStyles } from "../api/fetchDefaultStyles";
+import {
+  checkIfCustomCSSFileExists,
+  fetchDefaultStyles,
+} from "../api/fetchDefaultStyles";
 
 const Home = () => {
   const [surveyJson, setSurveyJson] = useState(null);
@@ -12,11 +15,12 @@ const Home = () => {
   const [surveyQuestions, setSurveyQuestions] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isLicenseBlocksSetUp, setIsLicenseBlocksSetUp] = useState(false);
   const { slogan } = useParams();
   const navigate = useNavigate();
 
   const newOrigin =
-    // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/trunorthdynamics-bc-crm";
+    // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/dickerdata-bc";
     window.location.href;
 
   useEffect(() => {
@@ -30,22 +34,32 @@ const Home = () => {
       }/${slogan}/defaultCss.css`;
       document.getElementsByTagName("head")[0].appendChild(link);
     };
+
+    const setCustomCSSFileIfExists = async (url) => {
+      try {
+        const isFileExists = await checkIfCustomCSSFileExists(url);
+        if (isFileExists) {
+          var link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.type = "text/css";
+          link.href = url;
+          document.getElementsByTagName("head")[0].appendChild(link);
+        } else {
+          await fetchDefaultStyles(newOrigin);
+        }
+      } catch (error) {
+        console.error("Error checking custom CSS file:", error);
+      }
+    };
+
     const getSchema = async () => {
       try {
         const response = await api.get("", { params: { slogan } });
         if (response.data) {
           const data = response.data;
           const schema = data?.content;
+          setIsLicenseBlocksSetUp(data?.isLicenseBlocksSetUp || false);
           setSurveyJson(schema);
-          if (data.customCssBlobUrl) {
-            var link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.type = "text/css";
-            link.href = data.customCssBlobUrl;
-            document.getElementsByTagName("head")[0].appendChild(link);
-          } else {
-            await fetchDefaultStyles(newOrigin);
-          }
         } else if (response.status === 404) {
           return navigate("/not-found");
         }
@@ -73,9 +87,24 @@ const Home = () => {
       }
     };
 
+    setDefaultStylesFile();
+    setCustomCSSFileIfExists(
+      `${import.meta.env.VITE_AZURE_BLOB_URL}/${slogan}/customCSS.css`
+    );
+    getSchema();
+    getSurveyInfo();
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
     const getLicenseBlocks = async () => {
+      if (!surveyJson) return;
       try {
-        const surveyQuestions = await fetchLicenseBlocks(newOrigin, slogan);
+        const surveyQuestions = await fetchLicenseBlocks(
+          newOrigin,
+          slogan,
+          isLicenseBlocksSetUp
+        );
         if (surveyQuestions) {
           console.log(surveyQuestions);
           setSurveyQuestions(surveyQuestions);
@@ -87,13 +116,9 @@ const Home = () => {
         setError("Something went wrong, please try again later.");
       }
     };
-
-    setDefaultStylesFile();
-    getSchema();
-    getSurveyInfo();
     getLicenseBlocks();
-    setLoading(false);
-  }, []);
+  }, [isLicenseBlocksSetUp, surveyJson, slogan]);
+
   return (
     <>
       {loading ? (
