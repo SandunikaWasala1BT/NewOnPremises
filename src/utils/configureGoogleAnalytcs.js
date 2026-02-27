@@ -39,7 +39,7 @@ export function configureGoogleAnalytics(propertyID) {
 export function googleAnalyticsOnPageChanged(
   sender,
   options,
-  sessionDetailsId
+  sessionDetailsId,
 ) {
   const pageName = sender.currentPage.name;
   const pageNo = sender.currentPageNo;
@@ -63,7 +63,7 @@ export function googleAnalyticsOnPageChanged(
         surveyUrl: window.location.href,
         timedata: nowUTC,
       },
-      "*"
+      "*",
     ); // Replace '*' with the specific origin if known, for security
 
     window.lastPageexpectedNo = null;
@@ -82,7 +82,7 @@ export async function googleAnalyticsOnPageChangedNew(
   userCountry,
   userCountryCode,
   timeSpent,
-  navigateOrder
+  navigateOrder,
 ) {
   const nowUTC = new Date().toISOString();
 
@@ -150,7 +150,7 @@ export async function googleAnalyticsOnCompleteNew(
   userCountry,
   userCountryCode,
   timeSpent,
-  navigateOrder
+  navigateOrder,
 ) {
   const nowUTC = new Date().toISOString();
 
@@ -177,8 +177,7 @@ export async function googleAnalyticsOnCompleteNew(
 
   try {
     // 🔹 Replace this URL with your real Azure Function or API endpoint
-    const cosmosApiUrl =
-      "https://qualify-fapp-uat.azurewebsites.net/api/GoogleAnalyticsAzureFunctionSaveSurveyEvent?code=g7CIHLFbfssQyUIPXTNzAb9W1cPpJicwnceDlGbZBxsiAzFuLN6TSQ==";
+    const cosmosApiUrl = `https://qualify-fapp-uat.azurewebsites.net/api/GoogleAnalyticsAzureFunctionSaveSurveyEvent?${import.meta.env.VITE_AZURE_GA_CODE}`;
 
     const response = await fetch(cosmosApiUrl, {
       method: "POST",

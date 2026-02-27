@@ -12,19 +12,24 @@ const api = axios.create({
   },
 });
 
-export const fetchLicenseBlocks = async (newOriginURL, surveySlogan) => {
+export const fetchLicenseBlocks = async (
+  newOriginURL,
+  surveySlogan,
+  isLicenseBlocksSetUp
+) => {
   try {
-    const response = await api.post("", { originURL: newOriginURL });
-    if (response.data) {
-      return response.data;
+    if (isLicenseBlocksSetUp) {
+      const response = await api.post("", { originURL: newOriginURL });
+      if (response.status === 200) {
+        return response.data;
+      } else {
+        throw new Error(response.statusText);
+      }
     } else {
-      throw new Error("Dataverse don't have data for given url");
-    }
-  } catch (error) {
-    if (error.response.data === "Dataverse don't have data for given url") {
       return await fetchLicenseBlocksFromBlob(surveySlogan);
     }
-    console.error("Error fetching license blocks:", error);
+  } catch (error) {
+    console.error("Error in fetchLicenseBlocks:", error);
     throw error;
   }
 };
