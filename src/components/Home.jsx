@@ -4,6 +4,7 @@ import SurveyRenderer from "./SurveyRenderer";
 import { fetchSurveyInfo } from "../api/fetchSurveyInfo";
 import { fetchLicenseBlocks } from "../api/fetchLicenseBlocks";
 import { api } from "../api/fetchScheme";
+import { fetchSurveys } from "../api/fetchSurveys";
 import {
   checkIfCustomCSSFileExists,
   fetchDefaultStyles,
@@ -20,7 +21,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const newOrigin =
-    // "https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/dickerdata-bc";
+    //"https://survey-portal-uat-gxchbpcrc4fkbze3.uksouth-01.azurewebsites.net/9altitudes-crm-salestech";
     window.location.href;
 
   useEffect(() => {
@@ -76,7 +77,19 @@ const Home = () => {
       try {
         const surveyInfo = await fetchSurveyInfo(newOrigin);
         if (surveyInfo) {
-          console.log(surveyInfo);
+          console.log("surveyInfo : " ,surveyInfo);
+          const surveys = await fetchSurveys(newOrigin);
+          if (surveys) {
+            console.log("surveys :",surveys);
+            surveyInfo.BaseUrl = surveys.baseURl;
+            surveyInfo.App = surveys.app;
+            surveyInfo.PartnerTemplate = surveys.partnerTemplate;
+            surveyInfo.Locale = surveys.locale;
+            surveyInfo.SeerEmail = surveys.seerEmail;
+            console.log("updated survey info :",surveyInfo);
+          }else {
+            console.warn("No survey data found");
+          }
           setSurveyInfo(surveyInfo);
         } else {
           console.warn("No survey info found");
@@ -86,7 +99,6 @@ const Home = () => {
         setError("Something went wrong, please try again later.");
       }
     };
-
     setDefaultStylesFile();
     setCustomCSSFileIfExists(
       `${import.meta.env.VITE_AZURE_BLOB_URL}/${slogan}/customCSS.css`
